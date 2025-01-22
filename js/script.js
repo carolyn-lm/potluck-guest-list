@@ -11,6 +11,7 @@ const guestCount = document.querySelector(".attendance");
 // alert when guest list is full (not yet visible)
 const guestFull = document.querySelector(".alert");
 
+//Event listener for Add Guest button
 addGuestButton.addEventListener("click", function () {
     const guest = guestInput.value;
     if (guest !== "") {
@@ -21,23 +22,28 @@ addGuestButton.addEventListener("click", function () {
     // console.log(guest);
 });
 
+//Clear value of input
 const clearInput = function () {
     guestInput.value = "";
 }
 
+//Add name to guest list
 const addToList = function (guest) {
     const listItem = document.createElement("li");
     listItem.innerText = guest;
     guestList.append(listItem);
 }
 
+//Update displayed guest count and check if list is full (only 8 guests allowed)
 const updateGuestCount = function () {
     const guests = document.querySelectorAll(".guest-list li");
     guestCount.innerText = guests.length;
     if (guests.length === 8) {
+        //guest list full, hide button, input and label
         addGuestButton.classList.add("hide");
         guestInput.classList.add("hide");
         guestInputLabel.classList.add("hide");
+        //display alert (full message and assign button)
         guestFull.classList.remove("hide");
     }
 }
